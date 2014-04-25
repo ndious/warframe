@@ -11,6 +11,9 @@
         .custom-timeline p {
             padding: 15px;
         }
+        .twitter-timeline {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +47,7 @@ var detector = /\(Mod\)|\(Blueprint\)|\(Aura\)/,
             content = [],
             li,
             available = 0;
-        timeline.hide();
+
         if (timeline !== undefined) {
             li = jQuery(timeline).contents().find('li');
 
