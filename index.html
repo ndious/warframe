@@ -63,12 +63,12 @@ var detector = /\(Mod\)|\(Blueprint\)|\(Aura\)/,
                     if (limit.getTime() > now.getTime()) {
                         available = available + 1;
                         if ((limit.getTime() - now.getTime()) <= 600000) {
-                            content.push('<p class="bg-warning">' + text + '</p>');
+                            content.push('<p class="bg-warning">' + date.getHours() + 'h' + date.getMinutes() + ' - ' + text + '</p>');
                         } else {
-                            content.push('<p class="bg-success">' + text + '</p>');
+                            content.push('<p class="bg-success">' + date.getHours() + 'h' + date.getMinutes() + ' - ' + text + '</p>');
                         }
                     } else {
-                        content.push('<p class="bg-danger">' + text + '</p>');
+                        content.push('<p class="bg-danger">' + date.getHours() + 'h' + date.getMinutes() + ' - ' + text + '</p>');
                     }
                     document.title = available + " loot available";
                  }
