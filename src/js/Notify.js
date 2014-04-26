@@ -3,6 +3,7 @@
 
     var noNotif = {requestPermission: function () {}},
         Notification = window.Notification || window.mozNotification || noNotif,
+        btn = document.querySelector('#request-permission'),
         
         showNotification = function (notify) {
             var instance = {};
@@ -79,16 +80,25 @@
     if (window.webkitNotifications) {
         Notification = window.webkitNotifications;
         if (Notification.checkPermission() !== 0) {
-            Notification.requestPermission();
+            btn.addEventListener('click', function () {
+                Notification.requestPermission();
+                btn.classList.add('btn-success');
+                btn.classList.remove('btn-primary');
+            });
+        } else {
+            btn.classList.add('btn-success');
+            btn.classList.remove('btn-primary');
         }
         config.wekit = true;
     } else if (Notification) {
         config.wekit = false;
+        btn.style.display = 'none';
         Notification.requestPermission(function (permission) {
             config.isNotificationAvailable = permission;
         });
     } else {
         config.isNotificationAvailable = false;
+        btn.style.display = 'none';
     }
     
 
