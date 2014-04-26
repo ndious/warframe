@@ -1,5 +1,5 @@
 (function (window) {
-    "use strict";
+    'use strict';
 
     var Notification = window.Notification || window.mozNotification || window.webkitNotification,
         
@@ -63,5 +63,5 @@
 
     window.notify = function (id, type, text) {
         return Notify.execute.apply(Notify, [id, type, text]);
-    }
+    };
 } (window));

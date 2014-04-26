@@ -1,5 +1,5 @@
 (function (window) {
-    "use strict";
+    'use strict';
 
     var jQuery = window.jQuery,
         Parser = {
@@ -37,7 +37,7 @@
 
                     if (self.match(text)) {
                         var duration = text.match(/(\d+)m/),
-                            time = parseInt(duration[1]),
+                            time = parseInt(duration[1], 10),
                             date = new Date(datetime),
                             limit = new Date(date.getTime() + (time * 60000));
 
@@ -67,5 +67,5 @@
 
     window.parser = function (timeline) {
         Parser.parse.apply(Parser, timeline);
-    }
+    };
 } (window));

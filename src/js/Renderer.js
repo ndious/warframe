@@ -1,16 +1,16 @@
-(function (window, document) {
-    "use strict";
+(function (window) {
+    'use strict';
 
     var document = window.document,
-    	jQuery = window.jQuery,
-    	Renderer = {
+        jQuery = window.jQuery,
+        Renderer = {
 
         container: '',
         contents: [],
 
         cleanup: function () {
-        	this.contents = [];
-        	this.container.innerHtml = '';
+            this.contents = [];
+            this.container.innerHtml = '';
         },
 
         addContent: function (type, id, text) {
