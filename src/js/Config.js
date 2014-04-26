@@ -18,6 +18,8 @@
 
         isNotificationAvailable: true,
 
+        chrome: false,
+
         addNotified: function (id) {
             this.notified.push(id);
             sessionStorage.setItem('notified', this.notified);

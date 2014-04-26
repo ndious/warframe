@@ -32,7 +32,7 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            files: ['Gruntfile.js', 'src/**/*.js'],
+            files: ['Gruntfile.js', 'src/**/*.js', 'test/*.js'],
             options: {
                 globals: {
                     jQuery: true,
@@ -53,6 +53,18 @@ module.exports = function(grunt) {
                 },
                 src: ['src/css/*.css']
             }
+        },
+        jasmine: {
+            test: {
+                src: 'src/js/*.js',
+                options: {
+                    specs: 'test/*.spec.js',
+                    vendor: 'lib/**/*.js'
+                }
+            }
+        },
+        bower: {
+            install: {}
         }
     });
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -61,8 +73,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-csslint');
+    grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
-    grunt.registerTask('test', ['jshint', 'csslint']);
-    grunt.registerTask('default', ['jshint', 'csslint', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('test', ['jshint', 'csslint', 'jasmine']);
+    grunt.registerTask('install', ['bower', 'jshint', 'csslint', 'jasmine', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['jshint', 'csslint', 'jasmine', 'concat', 'uglify', 'cssmin']);
 
 };
