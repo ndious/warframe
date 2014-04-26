@@ -6,7 +6,7 @@
         
         showNotification = function (notify) {
             var instance = {};
-            if (config.chrome) {
+            if (config.wekit) {
                 instance = Notification.create('warframenotif', {
                     type: 'basic',
                     iconUrl: notify.icon,
@@ -81,9 +81,9 @@
 
     if (window.webkitNotifications) {
         Notification = window.webkitNotifications;
-        config.chrome = true;
+        config.wekit = true;
     } else if (window.Notification || window.mozNotification) {
-        config.chrome = false;
+        config.wekit = false;
     } else {
         config.isNotificationAvailable = false;
     }
