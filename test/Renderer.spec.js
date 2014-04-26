@@ -1,7 +1,9 @@
-describe('Renderer testing', function() {
+describe('Renderer testing', function () {
+    'use strict';
+
     var container = jQuery('<p></p>');
 
-    beforeEach(function() {
+    beforeEach(function () {
         renderer.container = container;
     });
 

@@ -7,13 +7,10 @@
         showNotification = function (notify) {
             var instance = {};
             if (config.wekit) {
-                instance = Notification.create('warframenotif', {
-                    type: 'basic',
-                    iconUrl: notify.icon,
-                    title: notify.title,
-                    message: notify.body
-                });
-                instance.show();
+                if (Notification.checkPermission() === 0) {
+                    instance = Notification.createNotification(notify.icon, notify.title, notify.body);
+                    instance.show();
+                }
             } else {
                 instance = new Notification(
                     notify.title, {
@@ -81,16 +78,19 @@
 
     if (window.webkitNotifications) {
         Notification = window.webkitNotifications;
+        if (Notification.checkPermission() !== 0) {
+            Notification.requestPermission();
+        }
         config.wekit = true;
-    } else if (window.Notification || window.mozNotification) {
+    } else if (Notification) {
         config.wekit = false;
+        Notification.requestPermission(function (permission) {
+            config.isNotificationAvailable = permission;
+        });
     } else {
         config.isNotificationAvailable = false;
     }
     
-    Notification.requestPermission(function (permission) {
-        config.isNotificationAvailable = permission;
-    });
 
     window.notify = function (id, type, text) {
         return Notify.execute.apply(Notify, [id, type, text]);

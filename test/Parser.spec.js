@@ -1,4 +1,6 @@
-describe('Parser testing', function() {
-    beforeEach(function() {
+describe('Parser testing', function () {
+    'use strict';
+
+    beforeEach(function () {
     });
 });
