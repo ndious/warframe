@@ -1,4 +1,6 @@
-describe('Notify testing', function() {
-    beforeEach(function() {
+describe('Notify testing', function () {
+    'use strict';
+
+    beforeEach(function () {
     });
 });
