@@ -17,6 +17,12 @@
 <body>
     <div class="container">
         <div id="options" class="row">
+            <div class="col-md-12">
+                <h1>Warframe missions notifier</h1>
+                <h2 class="medium">Filter missions by :</h2>
+            </div>
+        </div>
+        <div id="options" class="row">
             <div class="col-md-3">
                 <label for="resource">Resource</label>
                 <input type="checkbox" id="option-resource" name="resource" value="resource" class="option-value">
@@ -59,15 +65,26 @@
             }
         } (document, "script", "twitter-wjs");
 
-        var parsingCycle = function (repeat) {
-            var timeline = jQuery('.twitter-timeline-rendered');
-            parser(timeline);
-            if (repeat === true) {
-                setTimeout(parsingCycle, 30000, true);
+        var options = jQuery('#options .option-value'),
+            parsingCycle = function (repeat) {
+                var timeline = jQuery('.twitter-timeline-rendered');
+                parser(timeline);
+                if (repeat === true) {
+                    setTimeout(parsingCycle, 30000, true);
+                }
             }
-        }
 
-        jQuery('#options .option-value').change(function () {
+        options.each(function () {
+            var option = jQuery(this);
+            option.removeProp('checked');
+            config.selected.forEach(function (element) {
+                if (element === option.val()) {
+                    option.prop('checked', 'checked');
+                }
+            });
+        });
+
+        options.change(function () {
             var option = jQuery(this);
             if (option.is(':checked')) {
                 config.addSelected(option.val());

@@ -18,6 +18,7 @@
 
         addSelected: function (option) {
             this.selected.push(option);
+            localStorage.setItem('selected', this.selected);
         },
 
         removeSelected: function (option) {
@@ -26,9 +27,13 @@
                     array.splice(index, 1);
                 }
             });
-            console.log(this.selected);
+            localStorage.setItem('selected', this.selected);
         }
     };
+
+    if (localStorage.getItem('selected') !== null) {
+        Config.selected = localStorage.getItem('selected').split(',');
+    }
 
     window.config = Config;
 } (window));
