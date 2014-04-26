@@ -1,3 +1,5 @@
+
+/* src/js/Config.js */
 (function (window) {
     'use strict';
 
@@ -66,7 +68,9 @@
     }
 
     window.config = Config;
-} (window));(function (window) {
+} (window));
+/* src/js/Notify.js */
+(function (window) {
     'use strict';
 
     var Notification = window.Notification || window.mozNotification || window.webkitNotification,
@@ -132,7 +136,9 @@
     window.notify = function (id, type, text) {
         return Notify.execute.apply(Notify, [id, type, text]);
     };
-} (window));(function (window) {
+} (window));
+/* src/js/Parser.js */
+(function (window) {
     'use strict';
 
     var jQuery = window.jQuery,
@@ -203,6 +209,8 @@
         Parser.parse.apply(Parser, timeline);
     };
 } (window));
+
+/* src/js/Renderer.js */
 (function (window) {
     'use strict';
 
