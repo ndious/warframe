@@ -1,11 +1,12 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+    'use strict';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
             options: {
                 separator: '',
-                process: function(src, filepath) {
+                process: function (src, filepath) {
                     return '\n/* ' + filepath + ' */\n' + src;
                 }
             },
@@ -27,19 +28,14 @@ module.exports = function(grunt) {
         cssmin: {
             compress: {
                 files: {
-                    "css/style.css": ["src/css/style.css"]
+                    'css/style.css': ['src/css/style.css']
                 }
             }
         },
         jshint: {
             files: ['Gruntfile.js', 'src/**/*.js', 'test/*.js'],
             options: {
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true,
-                    document: true
-                }
+                jshintrc: '.jshintrc'
             }
         },
         watch: {
@@ -77,6 +73,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     grunt.registerTask('test', ['jshint', 'csslint', 'jasmine']);
+    grunt.registerTask('travis', ['bower', 'jshint', 'csslint', 'jasmine']);
     grunt.registerTask('install', ['bower', 'jshint', 'csslint', 'jasmine', 'concat', 'uglify', 'cssmin']);
     grunt.registerTask('default', ['jshint', 'csslint', 'jasmine', 'concat', 'uglify', 'cssmin']);
 

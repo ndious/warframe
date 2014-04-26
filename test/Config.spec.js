@@ -1,7 +1,9 @@
-describe('Config testing', function() {
+describe('Config testing', function () {
+    'use strict';
+
     var notified = [1, 2, 3];
 
-    beforeEach(function() {
+    beforeEach(function () {
         config.notified = notified;
     });
 

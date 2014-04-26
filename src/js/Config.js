@@ -92,7 +92,7 @@
     /**
      * Load user config
      */
-    if (localStorage.getItem('selected') !== null && 
+    if (localStorage.getItem('selected') !== null &&
         localStorage.getItem('selected') !== ''
     ) {
         Config.selected = localStorage.getItem('selected').split(',');
@@ -100,7 +100,7 @@
     /**
      * Load previous notifications
      */
-    if (sessionStorage.getItem('notified') !== null && 
+    if (sessionStorage.getItem('notified') !== null &&
         sessionStorage.getItem('notified') !== ''
     ) {
         Config.notified = sessionStorage.getItem('notified').split(',');
