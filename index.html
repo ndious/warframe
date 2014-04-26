@@ -2,17 +2,11 @@
 <html lang="en">
 <head>
     <title>Warframe Crawler</title>
+    <link rel="icon" href="favicon.ico" />
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-        .custom-timeline p {
-            padding: 15px;
-        }
-        .twitter-timeline {
-            display: none;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -42,15 +36,16 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <a class="twitter-timeline"  href="https://twitter.com/WarframeAlerts"  data-widget-id="459613571555414018">Tweets de @WarframeAlerts</a>
                 <div class="custom-timeline"></div>
             </div>
         </div>
     </div>
+    <a class="twitter-timeline"  href="https://twitter.com/WarframeAlerts"  data-widget-id="459613571555414018">Tweets de @WarframeAlerts</a>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/Config.js"></script>
     <script type="text/javascript" src="js/Renderer.js"></script>
     <script type="text/javascript" src="js/Parser.js"></script>
+    <script type="text/javascript" src="js/Notify.js"></script>
     <script type="text/javascript">
         !function (document, script, id) {
             var js,
@@ -66,17 +61,19 @@
         } (document, "script", "twitter-wjs");
 
         var options = jQuery('#options .option-value'),
+
             parsingCycle = function (repeat) {
                 var timeline = jQuery('.twitter-timeline-rendered');
                 parser(timeline);
                 if (repeat === true) {
                     setTimeout(parsingCycle, 30000, true);
                 }
-            }
+            };
 
         options.each(function () {
             var option = jQuery(this);
             option.removeProp('checked');
+
             config.selected.forEach(function (element) {
                 if (element === option.val()) {
                     option.prop('checked', 'checked');

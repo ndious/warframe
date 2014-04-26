@@ -20,8 +20,7 @@
 
         parse: function (timeline) {
 
-            var content = [],
-                available = 0,
+            var available = 0,
                 now = new Date(),
                 self = this,
                 li;
@@ -41,8 +40,10 @@
                             time = parseInt(duration[1]),
                             date = new Date(datetime),
                             limit = new Date(date.getTime() + (time * 60000));
-                        
+
                         text = date.getHours() + 'h' + date.getMinutes() + ' - ' + text;
+
+                        notify(id, '', text);
 
                         if (limit.getTime() > now.getTime()) {
                             available = available + 1;
@@ -56,6 +57,7 @@
                             renderer.addContent('danger', id, text);
                         }
                     }
+
                 });
                 renderer.render();
                 renderer.title(available);
