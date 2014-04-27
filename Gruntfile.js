@@ -57,6 +57,21 @@ module.exports = function (grunt) {
                     specs: 'test/*.spec.js',
                     vendor: 'lib/**/*.js'
                 }
+            },
+            istanbul: {
+                src: '<%= jasmine.test.src %>',
+                options: {
+                    vendor: '<%= jasmine.test.options.vendor %>',
+                    specs: '<%= jasmine.test.options.specs %>',
+                    template: require('grunt-template-jasmine-istanbul'),
+                    templateOptions: {
+                        coverage: 'coverage/json/coverage.json',
+                        report: [
+                            {type: 'lcov', options: {dir: 'coverage'}},
+                            {type: 'text-summary'}
+                        ]
+                    }
+                }
             }
         },
         bower: {
@@ -71,7 +86,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-csslint');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-istanbul-coverage');
 
+    grunt.registerTask('coverage', ['jasmine:istanbul']);
     grunt.registerTask('test', ['jshint', 'csslint', 'jasmine']);
     grunt.registerTask('travis', ['bower', 'jshint', 'csslint', 'jasmine']);
     grunt.registerTask('install', ['bower', 'jshint', 'csslint', 'jasmine', 'concat', 'uglify', 'cssmin']);

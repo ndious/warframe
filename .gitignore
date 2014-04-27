@@ -3,3 +3,4 @@ _SpecRunner.html
 .grunt/
 lib/
 bower_components/
+coverage/
