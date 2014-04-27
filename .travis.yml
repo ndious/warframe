@@ -6,6 +6,4 @@ before_install:
   - npm install -g grunt-cli codeclimate-test-reporter
 install:
   - npm install --save-dev
-addons:
-  code_climate:
-    repo_token: 6caebac14cc7e45e0bf0c29086c973ff7282ab4cc5cc7a87f43b807cef20c2aa
+script: grunt travis --verbose
