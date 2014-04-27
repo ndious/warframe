@@ -88,25 +88,26 @@
                 }
             });
             localStorage.setItem('selected', this.selected);
+        },
+
+        load: function (item, from) {
+            if (from.getItem(item) !== null &&
+                from.getItem(item) !== ''
+            ) {
+                this[item] = from.getItem(item).split(',');
+            }
         }
     };
+
 
     /**
      * Load user config
      */
-    if (localStorage.getItem('selected') !== null &&
-        localStorage.getItem('selected') !== ''
-    ) {
-        Config.selected = localStorage.getItem('selected').split(',');
-    }
+    Config.load('selected', localStorage);
     /**
      * Load previous notifications
      */
-    if (sessionStorage.getItem('notified') !== null &&
-        sessionStorage.getItem('notified') !== ''
-    ) {
-        Config.notified = sessionStorage.getItem('notified').split(',');
-    }
+    Config.load('notified', sessionStorage);
 
     window.config = Config;
 } (window));

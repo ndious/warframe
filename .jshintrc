@@ -78,5 +78,5 @@
 	"white" : true, // true: Check against strict whitespace and indentation rules
 
 	// Custom Globals
-	"predef" : ["module", "renderer", "config", "parser", "notify", "it", "describe", "beforeEach", "expect"] // additional predefined global variables
+	"predef" : ["module", "renderer", "config", "parser", "notify", "it", "describe", "beforeEach", "expect", "require"] // additional predefined global variables
 }
