@@ -76,7 +76,13 @@ module.exports = function (grunt) {
         },
         bower: {
             install: {}
-        }
+        },
+        coveralls: {
+            options: {
+                src: 'coverage/lcov.info',
+                force: true
+            }
+        },
     });
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -87,10 +93,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-istanbul-coverage');
+    grunt.loadNpmTasks('grunt-coveralls');
 
     grunt.registerTask('coverage', ['jasmine:istanbul']);
     grunt.registerTask('test', ['jshint', 'csslint', 'jasmine']);
-    grunt.registerTask('travis', ['bower', 'jshint', 'csslint', 'jasmine']);
+    grunt.registerTask('travis', ['bower', 'jshint', 'csslint', 'jasmine', 'coveralls']);
     grunt.registerTask('install', ['bower', 'jshint', 'csslint', 'jasmine', 'concat', 'uglify', 'cssmin']);
     grunt.registerTask('default', ['jshint', 'csslint', 'jasmine', 'concat', 'uglify', 'cssmin']);
 
