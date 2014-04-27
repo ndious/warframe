@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - "0.8"
 before_install:
+  - npm cache clean
   - npm update npm -g
   - npm install -g grunt-cli
-  - npm cache clean
 install:
   - npm install --save-dev
 script: grunt travis --verbose
